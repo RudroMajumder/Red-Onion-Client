@@ -2,11 +2,11 @@ import React from 'react';
 import Header from '../Header/Header';
 import Foods from '../Foods/AllFoods/Foods';
 
-const Home = () => {
+const Home = ({cart}) => {
     return (
         <div>
             <Header/>
-            <Foods/>
+            <Foods cart={cart}/>
         </div>
     );
 };

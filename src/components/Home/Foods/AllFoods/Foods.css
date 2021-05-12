@@ -8,3 +8,12 @@
     color:red;
     border-bottom: 3px solid red;
 }
+.checkout-btn{
+    background-color: #DC3545;
+    color:white;
+    border-radius:10px;
+}
+.checkout-btn:hover{
+    background-color: #f12c40;
+    color:white;
+}

@@ -13,7 +13,7 @@ const Navbar = (props) => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto ">
-                <Link className="nav-link pe-5" ><FiShoppingCart size={25}/> <span> {props.cart.length} </span> </Link>
+                <Link className="nav-link pe-5" to="/checkout"><FiShoppingCart size={25}/> <span> {props.cart.length} </span> </Link>
                 <NavLink className="nav-link pe-5" exact to="/">Home</NavLink>
                 <NavLink className="nav-link pe-5" exact to="/dashboard">Dashboard</NavLink>
                 <NavLink className="nav-link pe-5" exact to="/login">Login</NavLink>

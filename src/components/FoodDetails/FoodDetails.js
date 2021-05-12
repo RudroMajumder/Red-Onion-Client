@@ -28,7 +28,7 @@ const FoodDetails = (props) => {
     }
     // console.log(cart)
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 mb-5">
             <div className="row">
                 <div className="col-md-5 col-sm-12 me-5">
                     <h1 className="mb-5"> {food.name} </h1>
@@ -44,11 +44,10 @@ const FoodDetails = (props) => {
                     </div>
                     <div>
                         <button className="btn cart-btn" onClick={()=>addToCart(food._id)}> Add To Cart <FaCartPlus/></button>
-                        <p> items{cart.length}</p>
                     </div>
                 </div>
                 <div className="col-md-6 col-sm-12">
-                    <img src={food.imgURL} alt="" />
+                    <img src={food.imgURL} className="img-fluid" alt="" />
                 </div>
             </div>
         </div>

@@ -1,0 +1,12 @@
+hr{
+    width:80%;
+    border:2px solid;
+}
+.items-container{
+    background: #e9e6e6;
+    border-radius: 10px;
+}
+.payment-container{
+    background: #f5f3f3;
+    border-radius: 10px;
+}

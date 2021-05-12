@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { li } from 'react-router-dom';
+import { li, Link } from 'react-router-dom';
 import './Foods.css'
 import IndividualItem from '../IndividualItem/IndividualItem';
 
-const Foods = () => {
+const Foods = (props) => {
     const [foods,setFoods] = useState([]);
     const [selectedMenu,setSelectedMenu] = useState("breakfast");
 
@@ -36,6 +36,11 @@ const Foods = () => {
                         foods.map(singleItem=><IndividualItem singleItem={singleItem}></IndividualItem>)
                     }
                 </div>
+            </div>
+            <div className="text-center mt-5">
+                 <Link to ="/checkout">
+                    <button className={props.cart.length?"btn checkout-btn":"btn btn-secondary disabled"}> Check Out Your Order </button>
+                </Link>
             </div>
         </section>
     );
