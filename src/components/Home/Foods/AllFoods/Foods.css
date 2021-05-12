@@ -1,0 +1,10 @@
+.options{
+    color:black;
+    cursor:pointer;
+    font-size:20px;
+    text-decoration: none;
+}
+.menu-active{
+    color:red;
+    border-bottom: 3px solid red;
+}

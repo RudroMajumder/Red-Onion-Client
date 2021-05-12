@@ -1,0 +1,25 @@
+p{
+    font-size:20px;
+    text-align:justify;
+}
+.control{
+    border-radius: 20px;
+    border: 1px solid #F91944;
+    padding:10px;
+}
+.control-btn{
+    border:none;
+    cursor: pointer;
+}
+.control-btn:hover{
+    color:#F91944;
+}
+.cart-btn{
+    background-color:#F91944;
+    color:white;
+    border-radius: 10px;
+}
+.cart-btn:hover{
+    background-color:#c90f34;
+    color:white;
+}
