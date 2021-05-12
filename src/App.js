@@ -38,7 +38,7 @@ function App() {
     const paymentSuccess = (paymentId) =>{
       setPaymentId(paymentId)
     }
-    console.log(paymentId)
+    // console.log(paymentId)
   return (
     <div >
       <Router>
