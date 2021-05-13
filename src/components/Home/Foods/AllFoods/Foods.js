@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { li, Link } from 'react-router-dom';
 import './Foods.css'
 import IndividualItem from '../IndividualItem/IndividualItem';
+import HashLoader from "react-spinners/HashLoader";
+import { css } from "@emotion/core";
 
 const Foods = (props) => {
     const [foods,setFoods] = useState([]);
     const [selectedMenu,setSelectedMenu] = useState("breakfast");
+    const override = css`
+        display: block;
+        margin: 150px auto;
+        border-color: red;
+        `;
 
     useEffect(()=>{
         fetch('http://localhost:5000/allFoods')
@@ -31,11 +38,11 @@ const Foods = (props) => {
                         </li>
                     </ul>
                 </nav>
-                <div className="row mt-5">
+                {foods.length?<div className="row mt-5">
                     {
                         foods.map(singleItem=><IndividualItem singleItem={singleItem}></IndividualItem>)
                     }
-                </div>
+                </div>:<HashLoader size={50} css={override} className="spinner"/> }
             </div>
             <div className="text-center mt-5">
                  <Link to ="/checkout">

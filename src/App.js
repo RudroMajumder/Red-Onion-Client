@@ -42,7 +42,8 @@ function App() {
       console.log(data);
     }
     const handleOrder= (id) =>{
-      setOrderID(id)
+      setOrderID(id);
+      setCart([]);
     }
     
     const [loggedInUser,setLoggedInUser] = useState({});
