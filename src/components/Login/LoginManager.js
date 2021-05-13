@@ -23,27 +23,44 @@ export const handleGoogleSignIn = () =>{
             email: user.email
         };
         return signedInUser;
-    }).catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-    });
+    }).catch((error) => {console.log(error.message)})
+}
+
+export const handleFbSignIn = () =>{
+    const fbProvider = new firebase.auth.FacebookAuthProvider();
+    return firebase.auth().signInWithPopup(fbProvider)
+    .then((result) => {
+      var user = result.user;
+      const signedInUser = {
+        name: user.displayName,
+        email: user.email
+      };
+      return signedInUser;
+    })
+    .catch((error) => console.log(error.message));
 }
 
 export const createNewUser = (name,email,password) =>{
     return firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(res => {
+      firebase.auth().currentUser.updateProfile({
+          displayName: name
+      })
+      return(res.user);     
+  })
+  .catch(err=> console.log({error: err.message}))
+}
+
+export const signIn  = (email,password) =>{
+    return firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in 
+      // Signed in
       var user = userCredential.user;
-      updateUserName(name);
-      return user;
+      return(user);
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorMessage)
-      // ..
     });
 }
 

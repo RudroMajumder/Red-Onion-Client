@@ -16,11 +16,6 @@ const FoodDetails = (props) => {
         .then(res=>res.json())
         .then(data=>setFood(data[0]))
     },[id])
-    useEffect(()=>{
-        fetch('http://localhost:5000/allFoods')
-        .then(res=> res.json())
-        .then( data => setAllFood(data))
-    },[])
     
     const addToCart = (id) =>{
         food.quantity = quantity;

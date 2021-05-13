@@ -1,21 +1,46 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import './Checkout.css';
 import DetailsForm from '../DeliverDetails/DetailsForm';
 import {FaMinus,FaPlus} from 'react-icons/fa';
 import ProcessPayment from '../ProcessPayment/ProcessPayment';
-import { Link } from 'react-router-dom';
+import { UserContext } from '../../../App';
+import { useHistory } from 'react-router';
 
 const Checkout = (props) => {
     const [paymentSuccess,setPaymentSuccess] = useState(false);
+    const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+    const [deliveryDetails,setDeliveryDetails] = useState();
+    const [paymentId,setPaymentId] = useState();
+    const history = useHistory();
 
     const handleFormSubmit = (data) =>{
         console.log(data)
+        setDeliveryDetails(data);
         props.handleDeliverDetails(data);
     }
     const handlePaymentSuccess = (paymentId) =>{
         console.log(paymentId);
-        props.paymentSuccess(paymentId);
+        setPaymentId(paymentId)
         setPaymentSuccess(true);
+    }
+    const handlePlaceOrder = () =>{
+        const orderedItems  = props.cart.map(item=> {return {name:item.name,quantity:item.quantity,price:item.price}})
+        console.log(orderedItems);
+        const orderInfo = {email:loggedInUser.email,orderedItems,paymentId} 
+        console.log(orderInfo);
+        fetch('http://localhost:5000/addOrder',{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(orderInfo)
+        })
+        .then( res => res.json())
+        .then( data => {
+            console.log(data.insertedCount,data.insertedId)
+            props.handleOrder(data.insertedId);
+            if(data.insertedCount>0){
+                history.push('/orderSummary')
+            }
+        })
     }
     const subTotal = props.cart.reduce((previousTotal,currentTotal)=>{
         return previousTotal + (currentTotal.price * currentTotal.quantity);
@@ -26,14 +51,14 @@ const Checkout = (props) => {
         <section className="checkout-container mt-5 mb-5">
             <div className="container mt-5">
                 <div className="row">
-                    <div className="col-md-6 col-sm-12" style={{display:(props.deliveryDetails)?"none":"block"}}>
+                    <div className="col-md-6 col-sm-12" style={{display:(deliveryDetails)?"none":"block"}}>
                         <h3> Edit Delivery Details </h3>
                         <hr/>
                         <DetailsForm handleFormSubmit={handleFormSubmit}/>
                     </div>
 
 
-                    <div style={{display:(props.deliveryDetails)?"block":"none"}} className="col-md-6 col-sm-12 ">
+                    <div style={{display:(deliveryDetails)?"block":"none"}} className="col-md-6 col-sm-12 ">
                         <h2 className="mb-5"> Pay Here</h2>
                         <ProcessPayment handlePayment={handlePaymentSuccess}/>
                     </div>
@@ -65,11 +90,12 @@ const Checkout = (props) => {
                             <p className="d-flex justify-content-between"> <span>Total </span> <span>: {total.toFixed(2)} </span></p>
                         </div>
                         <div className="text-center">
-                                <Link to="/orderSummary" >
-                                    <button className={(props.cart.length && paymentSuccess)?"btn submit-btn ":"btn btn-secondary disabled"}>
+                                    <button 
+                                    className={(props.cart.length && paymentSuccess)?"btn submit-btn ":"btn btn-secondary disabled"}
+                                    onClick = {handlePlaceOrder}
+                                    >
                                     {props.cart.length?"Place Order":"Nothing to Check Out"}
                                     </button>
-                                </Link>
                         </div>
                     </div>
                 </div>
