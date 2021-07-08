@@ -3,10 +3,15 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from "../../../images/logo2.png";
 import {FiShoppingCart} from 'react-icons/fi';
 import { UserContext } from '../../../App';
+import { useHistory } from 'react-router';
 
 const Navbar = (props) => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
+    const handleLogout = () =>{
+        setLoggedInUser({});
+        history.push("/");
+    }
     return (
         <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">

@@ -19,7 +19,7 @@ export const handleGoogleSignIn = () =>{
         var token = credential.accessToken;
         var user = result.user;
         const signedInUser = {
-            name: user.displayName,
+            displayName: user.displayName,
             email: user.email
         };
         return signedInUser;
@@ -32,7 +32,7 @@ export const handleFbSignIn = () =>{
     .then((result) => {
       var user = result.user;
       const signedInUser = {
-        name: user.displayName,
+        displayName: user.displayName,
         email: user.email
       };
       return signedInUser;
