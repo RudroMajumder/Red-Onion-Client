@@ -7,6 +7,7 @@ import {
 import Checkout from "./components/Checkout/Checkout/Checkout";
 import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import FoodDetails from "./components/FoodDetails/FoodDetails";
+import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home/Home";
 import Navbar from "./components/Home/Navbar/Navbar";
 import Login from "./components/Login/Login";
@@ -76,6 +77,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <Footer/>
     </UserContext.Provider>
   );
 }

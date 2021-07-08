@@ -77,9 +77,7 @@ const Checkout = (props) => {
                                         <p><small> Free Delivery </small></p>
                                     </div>
                                     <div className="ms-5 d-flex align-items-center ">
-                                        <button className="btn" ><FaMinus className=" control-btn" /> </button>
                                         <span className="ms-3 me-3">{item.quantity}</span>
-                                        <button className="btn"><FaPlus className=" control-btn" /> </button>
                                     </div>
                                 </div>
                                 )
