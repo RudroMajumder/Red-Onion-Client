@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useEffect, useState} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from "../../../images/logo2.png";
 import {FiShoppingCart} from 'react-icons/fi';
@@ -7,11 +7,25 @@ import { useHistory } from 'react-router';
 
 const Navbar = (props) => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+    const email = loggedInUser.email;
+    console.log(email)
+    const [isAdmin,setIsAdmin] = useState();
     const history = useHistory();
     const handleLogout = () =>{
         setLoggedInUser({});
         history.push("/");
+        window.location.reload(true);
     }
+    useEffect(()=>{
+        fetch("http://localhost:5000/isAdmin",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({email:email})
+        })
+        .then(res=>res.json())
+        .then(data=>{setIsAdmin(data)})
+    },[email])
+    console.log(isAdmin)
     return (
         <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
@@ -23,7 +37,7 @@ const Navbar = (props) => {
             <div className="navbar-nav ms-auto ">
                 <Link className="nav-link pe-5" to="/checkout"><FiShoppingCart size={25}/> <span> {props.cart.length} </span> </Link>
                 <NavLink className="nav-link pe-5" exact to="/">Home</NavLink>
-                <NavLink className="nav-link pe-5" exact to="/dashboard">Dashboard</NavLink>
+                {isAdmin && <NavLink className="nav-link pe-5" exact to="/dashboard">Dashboard</NavLink>}
                 {loggedInUser.email && <Link className="nav-link pe-5">{loggedInUser.displayName}</Link>}
 
                 {loggedInUser.email?<button className="btn " style={{backgroundColor:"#f88aa0"}} onClick={handleLogout}> Logout </button>:
