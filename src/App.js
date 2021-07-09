@@ -13,6 +13,9 @@ import Navbar from "./components/Home/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/Login/PrivateRoute";
 import OrderSummary from "./components/OrderSummary/OrderSummary";
+import AddItem from './components/Dashboard/AddItem/AddItem';
+import AddAdmin from "./components/Dashboard/AddAdmin/AddAdmin";
+import ManageItems from "./components/Dashboard/ManageItems/ManageItems";
 
 
 export const UserContext = createContext();
@@ -74,6 +77,15 @@ function App() {
           </PrivateRoute>
           <Route path="/login">
             <Login/>
+          </Route>
+          <Route path="/addItem">
+            <AddItem/>
+          </Route>
+          <Route path="/addAdmin">
+            <AddAdmin/>
+          </Route>
+          <Route path="/manageItems">
+            <ManageItems/>
           </Route>
         </Switch>
       </Router>

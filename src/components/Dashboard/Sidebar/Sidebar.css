@@ -1,0 +1,12 @@
+.sidebar{
+    background:#425857;
+    margin-left: -15px;
+}
+.nav-option{
+    font-size:20px;
+}
+.active-nav{
+    background:#0b9b28;
+    border-radius: 5px;
+    width:100%;
+}

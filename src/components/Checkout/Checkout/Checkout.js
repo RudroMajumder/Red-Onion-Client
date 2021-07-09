@@ -26,7 +26,7 @@ const Checkout = (props) => {
     const handlePlaceOrder = () =>{
         const orderedItems  = props.cart.map(item=> {return {name:item.name,quantity:item.quantity,price:item.price}})
         console.log(orderedItems);
-        const orderInfo = {email:loggedInUser.email,orderedItems,paymentId} 
+        const orderInfo = {email:loggedInUser.email,orderedItems,paymentId,total:total} 
         console.log(orderInfo);
         fetch('http://localhost:5000/addOrder',{
             method:"POST",
