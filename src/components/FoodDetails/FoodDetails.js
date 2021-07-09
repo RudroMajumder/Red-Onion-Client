@@ -19,7 +19,7 @@ const FoodDetails = (props) => {
         `;
     // console.log(id);
     useEffect(()=>{
-        fetch('http://localhost:5000/foodById/'+id)
+        fetch('https://secret-woodland-60592.herokuapp.com/foodById/'+id)
         .then(res=>res.json())
         .then(data=>setFood(data[0]))
     },[id])

@@ -17,7 +17,7 @@ const Navbar = (props) => {
         window.location.reload(true);
     }
     useEffect(()=>{
-        fetch("http://localhost:5000/isAdmin",{
+        fetch("https://secret-woodland-60592.herokuapp.com/isAdmin",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({email:email})

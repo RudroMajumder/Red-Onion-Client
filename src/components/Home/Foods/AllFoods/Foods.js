@@ -15,7 +15,7 @@ const Foods = (props) => {
         `;
 
     useEffect(()=>{
-        fetch('http://localhost:5000/allFoods')
+        fetch('https://secret-woodland-60592.herokuapp.com/allFoods')
         .then(res=> res.json())
         .then( data => {
             setFoods(data.filter(foodItems=> foodItems.type === selectedMenu));

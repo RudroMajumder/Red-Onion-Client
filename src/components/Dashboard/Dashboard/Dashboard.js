@@ -5,7 +5,7 @@ const Dashboard = () => {
     const [orders,setOrders] = useState([]);
     const sortedOrders = orders.reverse();
     useEffect(()=>{
-        fetch("http://localhost:5000/allOrders",{
+        fetch("https://secret-woodland-60592.herokuapp.com/allOrders",{
             method:"GET",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify()

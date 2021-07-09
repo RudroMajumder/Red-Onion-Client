@@ -12,7 +12,7 @@ const ManageItems = () => {
         setSelectedCategory(value);
     }
     useEffect(()=>{
-        fetch('http://localhost:5000/allFoods')
+        fetch('https://secret-woodland-60592.herokuapp.com/allFoods')
         .then(res=> res.json())
         .then( data => {
             setFoods(data.filter(foodItems=> foodItems.type === selectedCategory));
@@ -22,7 +22,7 @@ const ManageItems = () => {
 
     const handleDelete = (id) =>{
         console.log(id)
-        fetch(`http://localhost:5000/delete/${id}`,{
+        fetch(`https://secret-woodland-60592.herokuapp.com/delete/${id}`,{
             method:"DELETE",
             headers:{"Content-Type":"application.json"},
             body:JSON.stringify()

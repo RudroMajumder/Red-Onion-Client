@@ -21,7 +21,7 @@ const AddItem = () =>{
     const onSubmit = (data,e) => {
         const info = {...data, imgURL:imgURL};
         console.log(info);
-        fetch('http://localhost:5000/addFood',{
+        fetch('https://secret-woodland-60592.herokuapp.com/addFood',{
             method:"POST",
             headers:{"Content-type":"application/json",
             'Accept': 'application/json'},

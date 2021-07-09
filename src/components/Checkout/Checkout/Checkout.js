@@ -28,7 +28,7 @@ const Checkout = (props) => {
         console.log(orderedItems);
         const orderInfo = {email:loggedInUser.email,orderedItems,paymentId,total:total} 
         console.log(orderInfo);
-        fetch('http://localhost:5000/addOrder',{
+        fetch('https://secret-woodland-60592.herokuapp.com/addOrder',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(orderInfo)
